@@ -1,0 +1,10 @@
+machine:
+  kubelet:
+    extraMounts:
+      - destination: /var/log/pods
+        type: bind
+        source: /var/log/pods
+        options:
+          - bind
+          - rshared
+          - rw
