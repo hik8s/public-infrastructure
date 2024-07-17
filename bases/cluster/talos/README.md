@@ -13,17 +13,18 @@ These are the instructions for deploying a Kubernetes cluster on a dedicated Het
     Go to <https://robot.hetzner.com/server> -> `Server Auction #2345678` -> `Firewall`
 
     ```bash
-    export YOUR_HOME_IP=$(curl -w '\n' ifconfig.me)
+    export YOUR_HOME_IP=$(curl --silent --write '\n' ifconfig.me) && echo $YOUR_HOME_IP
     ./scripts/printf-firewall-table.sh
     ```
 
     The `Rules (incoming)` should look like this:
 
     ```bash
-    Name       | Version  | Protocol | Source IP      | ...  | Action 
-    -----------|----------|----------|----------------|------|--------
-    Allow home | ipv4     | *        | <your_home_ip> | ...  | accept 
-    Drop all   | *        | *        | 0.0.0.0/32     | ...  | discard
+    Name                         | Version  | Protocol | Source IP          | ...  | Destination port | Action  
+    -----------------------------|----------|----------|--------------------|------|------------------|---------
+    Allow home                   | ipv4     | *        | <your_home_ip>/32  | ...  |                  | accept  
+    Drop kube-apiserver + talos  | *        | *        |                    | ...  | 6443,50000-50001 | discard
+    Allow all                    | *        | *        |                    | ...  |                  | accept
     ```
 
 2. Login
