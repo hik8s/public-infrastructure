@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: logd
+spec:
+  selector:
+    matchLabels:
+      name: logd
+  template:
+    metadata:
+      labels:
+        name: logd
+    spec:
+      containers:
+      - name: logd
+        image: ghcr.io/hik8s/logd:0.1.1
+        env:
+        - name: RUST_LOG
+          value: "info"
+        - name: BASE_URL
+          value: "https://api.hik8s.ai"
+        - name: AUTH0_AUDIENCE
+          value: "api.hik8s.ai"
+        - name: CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: hik8s-credentials
+              key: clientid
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: hik8s-credentials
+              key: clientsecret
+        - name: AUTH0_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: hik8s-credentials
+              key: auth0domain
+        volumeMounts:
+        - name: log-directory
+          mountPath: /var/log/pods
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
+      volumes:
+      - name: log-directory
+        hostPath:
+          path: /var/log/pods
+          type: Directory
