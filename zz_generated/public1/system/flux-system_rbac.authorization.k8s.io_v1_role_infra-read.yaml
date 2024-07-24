@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: infra-read
+  namespace: flux-system
+rules:
+- apiGroups:
+  - ""
+  resourceNames:
+  - hik8s-bot-infra-read-token
+  resources:
+  - secrets
+  verbs:
+  - get

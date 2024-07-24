@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: sops-gpg
+  namespace: flux-system
+rules:
+- apiGroups:
+  - ""
+  resourceNames:
+  - sops-gpg
+  resources:
+  - secrets
+  verbs:
+  - get
