@@ -1,0 +1,10 @@
+creation_rules:
+  - path_regex: clusters/.*/cluster/talos/secrets.yaml
+    encrypted_regex: ^(secret|bootstraptoken|secretboxencryptionsecret|token|key|crt)$
+    pgp: 7C3D956BFD6132ABE9B3BDA354C36FA156D8BD5F
+  - path_regex: clusters/.*/cluster/talos/cluster.yaml
+    encrypted_regex: ^(secret|bootstraptoken|secretboxEncryptionSecret|token|key|crt)$
+    pgp: 7C3D956BFD6132ABE9B3BDA354C36FA156D8BD5F
+  - path_regex: .*secret.*.yaml
+    encrypted_regex: ^(data|stringData|dockerconfigjson)$
+    pgp: 785D5B82A4F4BC64AF83CE3FB6AF197DF6CBC418
