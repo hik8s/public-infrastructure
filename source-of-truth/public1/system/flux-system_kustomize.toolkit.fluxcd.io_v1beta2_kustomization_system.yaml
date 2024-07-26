@@ -4,6 +4,10 @@ metadata:
   name: system
   namespace: flux-system
 spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   interval: 10m
   path: ./source-of-truth/public1/system
   prune: true

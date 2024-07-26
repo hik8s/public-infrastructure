@@ -3,6 +3,10 @@ kind: Kustomization
 metadata:
   name: system
 spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
   interval: 10m
   sourceRef:
     kind: GitRepository
