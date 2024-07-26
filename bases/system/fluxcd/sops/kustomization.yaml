@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - rbac.yaml
+# Note: secret.yaml is intentionally omitted. This secret must be applied manually in decrypted form, as FluxCD requires it to decrypt secrets.
+

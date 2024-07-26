@@ -5,7 +5,7 @@ creation_rules:
   - path_regex: clusters/.*/cluster/talos/cluster.yaml
     encrypted_regex: ^(secret|bootstraptoken|secretboxEncryptionSecret|token|key|crt)$
     pgp: 7C3D956BFD6132ABE9B3BDA354C36FA156D8BD5F
-  - path_regex: bases/system/fluxcd/sops-secret.yaml
+  - path_regex: bases/system/fluxcd/sops/secret.yaml
     encrypted_regex: ^(data)$
     pgp: 7C3D956BFD6132ABE9B3BDA354C36FA156D8BD5F
   - path_regex: .*secret.*.yaml

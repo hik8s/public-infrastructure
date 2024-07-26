@@ -4,6 +4,6 @@ kind: Kustomization
 resources:
   - git-repository.yaml
   # - namespace.yaml
-  - operator
-  - rbac.yaml
+  - operator/
+  - sops/
 
