@@ -7,5 +7,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: public-infrastructure
-  path: ./zz_generated/public1/apps
+  path: ./source-of-truth/public1/apps
   prune: true

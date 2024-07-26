@@ -8,7 +8,7 @@ This includes
 export CLUSTER_NAME="public1"
 export APP="hik8s-system"
 export SOURCE_PATH="bases/apps/$APP"
-export GENERATE_PATH="zz_generated/$CLUSTER_NAME/apps/$APP"
+export GENERATE_PATH="source-of-truth/$CLUSTER_NAME/apps/$APP"
 ```
 
 ```bash

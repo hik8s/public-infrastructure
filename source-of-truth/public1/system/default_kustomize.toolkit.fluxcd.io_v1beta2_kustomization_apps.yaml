@@ -4,7 +4,7 @@ metadata:
   name: apps
 spec:
   interval: 10m
-  path: ./zz_generated/public1/apps
+  path: ./source-of-truth/public1/apps
   prune: true
   sourceRef:
     kind: GitRepository

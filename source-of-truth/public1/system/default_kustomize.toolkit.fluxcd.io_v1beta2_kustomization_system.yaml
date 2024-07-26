@@ -4,7 +4,7 @@ metadata:
   name: system
 spec:
   interval: 10m
-  path: ./zz_generated/public1/system
+  path: ./source-of-truth/public1/system
   prune: true
   sourceRef:
     kind: GitRepository

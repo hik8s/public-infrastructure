@@ -4,7 +4,7 @@
 export BASE="system"
 export CLUSTER_NAME="public1"
 export SOURCE_PATH="clusters/$CLUSTER_NAME/$BASE"
-export GENERATE_PATH="zz_generated/$CLUSTER_NAME/$BASE"
+export GENERATE_PATH="source-of-truth/$CLUSTER_NAME/$BASE"
 
 mkdir -p $GENERATE_PATH
 rm -rf $GENERATE_PATH/*

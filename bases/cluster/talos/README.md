@@ -117,7 +117,7 @@ These are the instructions for deploying a Kubernetes cluster on a dedicated Het
     ```bash
     BASE_PATCHES="bases/cluster/talos/patches"
     CLUSTER_PATCHES="clusters/$CLUSTER_NAME/cluster/talos/patches"
-    SOURCE_OF_TRUTH_DIR="zz_generated/$CLUSTER_NAME/cluster/talos"
+    SOURCE_OF_TRUTH_DIR="source-of-truth/$CLUSTER_NAME/cluster/talos"
     mkdir -p "$SOURCE_OF_TRUTH_DIR"
     ```
 
@@ -214,7 +214,7 @@ These are the instructions for deploying a Kubernetes cluster on a dedicated Het
 
     ```bash
     export SOURCE_PATH="clusters/$CLUSTER_NAME/system"
-    export GENERATE_PATH="zz_generated/$CLUSTER_NAME/system"
+    export GENERATE_PATH="source-of-truth/$CLUSTER_NAME/system"
 
     mkdir -p $GENERATE_PATH
     kubectl kustomize --enable-helm $SOURCE_PATH -o $GENERATE_PATH
