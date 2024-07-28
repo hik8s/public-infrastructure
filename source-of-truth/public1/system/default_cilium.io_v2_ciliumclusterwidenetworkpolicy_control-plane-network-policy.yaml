@@ -1,0 +1,137 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: control-plane-network-policy
+spec:
+  description: control-plane specific access rules.
+  ingress:
+  - fromEntities:
+    - world
+    - cluster
+    toPorts:
+    - ports:
+      - port: "6443"
+        protocol: TCP
+  - fromEntities:
+    - world
+    - cluster
+    toPorts:
+    - ports:
+      - port: "50000"
+        protocol: TCP
+      - port: "50001"
+        protocol: TCP
+  - fromEntities:
+    - kube-apiserver
+    toPorts:
+    - ports:
+      - port: "10250"
+        protocol: TCP
+      - port: "4244"
+        protocol: TCP
+  - fromEndpoints:
+    - matchLabels:
+        k8s-app: hubble-relay
+    toPorts:
+    - ports:
+      - port: "4244"
+        protocol: TCP
+  - fromEndpoints:
+    - matchLabels:
+        k8s-app: metrics-server
+    toPorts:
+    - ports:
+      - port: "10250"
+        protocol: TCP
+  - icmps:
+    - fields:
+      - family: IPv4
+        type: 8
+      - family: IPv6
+        type: 128
+  - fromEntities:
+    - remote-node
+    toPorts:
+    - ports:
+      - port: "8472"
+        protocol: UDP
+      - port: "4240"
+        protocol: TCP
+  - fromEntities:
+    - remote-node
+    toPorts:
+    - ports:
+      - port: "2379"
+        protocol: TCP
+      - port: "2380"
+        protocol: TCP
+      - port: "51871"
+        protocol: UDP
+  - fromCIDR:
+    - 142.132.214.164/32
+    toPorts:
+    - ports:
+      - port: "2379"
+        protocol: TCP
+      - port: "2380"
+        protocol: TCP
+  - fromEntities:
+    - world
+    - cluster
+    toPorts:
+    - ports:
+      - port: "51820"
+        protocol: UDP
+  - fromEntities:
+    - world
+    - cluster
+    toPorts:
+    - ports:
+      - port: "67"
+        protocol: UDP
+      - port: "68"
+        protocol: UDP
+  - fromEntities:
+    - world
+    - cluster
+    toPorts:
+    - ports:
+      - port: "80"
+        protocol: TCP
+      - port: "443"
+        protocol: TCP
+  - fromEntities:
+    - cluster
+    toPorts:
+    - ports:
+      - port: "8443"
+        protocol: TCP
+  - fromEntities:
+    - cluster
+    toPorts:
+    - ports:
+      - port: "10250"
+        protocol: TCP
+  - fromEntities:
+    - remote-node
+    toPorts:
+    - ports:
+      - port: "6641"
+        protocol: TCP
+      - port: "6642"
+        protocol: TCP
+      - port: "6643"
+        protocol: TCP
+      - port: "6644"
+        protocol: TCP
+      - port: "6081"
+        protocol: UDP
+      - port: "10660"
+        protocol: TCP
+      - port: "10661"
+        protocol: TCP
+      - port: "10665"
+        protocol: TCP
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/control-plane: ""
