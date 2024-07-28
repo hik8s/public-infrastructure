@@ -1,6 +1,6 @@
 ipam:
   mode: kubernetes
-kubeProxyReplacement: strict
+kubeProxyReplacement: true
 hostFirewall:
   enabled: true
 externalIPs:
