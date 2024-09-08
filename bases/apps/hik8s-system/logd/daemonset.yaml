@@ -17,7 +17,7 @@ spec:
         env:
         - name: RUST_LOG
           value: "info"
-        - name: BASE_URL
+        - name: HIK8S_HOST
           value: "https://api.hik8s.ai"
         - name: AUTH0_AUDIENCE
           value: "api.hik8s.ai"
