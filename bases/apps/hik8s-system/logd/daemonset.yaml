@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: logd
-        image: ghcr.io/hik8s/logd:0.1.1
+        image: ghcr.io/hik8s/logd:0.2.0
         env:
         - name: RUST_LOG
           value: "info"
