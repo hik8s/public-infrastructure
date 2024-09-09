@@ -35,7 +35,7 @@ spec:
             secretKeyRef:
               key: auth0domain
               name: hik8s-credentials
-        image: ghcr.io/hik8s/logd:0.2.1
+        image: ghcr.io/hik8s/logd:0.2.2
         name: logd
         volumeMounts:
         - mountPath: /var/log/pods
