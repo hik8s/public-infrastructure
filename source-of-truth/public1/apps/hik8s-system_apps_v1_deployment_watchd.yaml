@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: watchd
+  namespace: hik8s-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchd
+  template:
+    metadata:
+      labels:
+        name: watchd
+    spec:
+      containers:
+      - env:
+        - name: RUST_LOG
+          value: warn
+        - name: HIK8S_HOST
+          value: stag.api.hik8s.ai
+        - name: AUTH0_AUDIENCE
+          value: api.hik8s.ai
+        - name: CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: clientid
+              name: hik8s-credentials
+        - name: CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              key: clientsecret
+              name: hik8s-credentials
+        - name: AUTH0_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              key: auth0domain
+              name: hik8s-credentials
+        image: ghcr.io/hik8s/watchd:0.1.0
+        name: watchd
+      serviceAccountName: api-viewer
