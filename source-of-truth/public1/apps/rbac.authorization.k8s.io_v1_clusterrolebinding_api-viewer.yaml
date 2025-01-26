@@ -1,11 +1,11 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: api-viewer-binding
+  name: api-viewer
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: api-resources-reader
+  name: api-viewer
 subjects:
 - kind: ServiceAccount
   name: api-viewer

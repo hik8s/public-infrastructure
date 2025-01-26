@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: logd
+  namespace: hik8s-system
 spec:
   selector:
     matchLabels:
@@ -12,38 +13,41 @@ spec:
         name: logd
     spec:
       containers:
-      - name: logd
-        image: ghcr.io/hik8s/logd:0.2.3
-        env:
-        - name: RUST_LOG
-          value: "info"
+      - env:
         - name: HIK8S_HOST
-          value: "api.hik8s.ai"
+          value: api.hik8s.ai
+        - name: RUST_LOG
+          value: info
+        - name: HIK8S_PORT
+          value: "443"
         - name: AUTH0_AUDIENCE
-          value: "api.hik8s.ai"
+          value: api.hik8s.ai
         - name: CLIENT_ID
           valueFrom:
             secretKeyRef:
-              name: hik8s-credentials
               key: clientid
+              name: hik8s-credentials
         - name: CLIENT_SECRET
           valueFrom:
             secretKeyRef:
-              name: hik8s-credentials
               key: clientsecret
+              name: hik8s-credentials
         - name: AUTH0_DOMAIN
           valueFrom:
             secretKeyRef:
-              name: hik8s-credentials
               key: auth0domain
+              name: hik8s-credentials
+        image: ghcr.io/hik8s/logd:0.2.3
+        imagePullPolicy: IfNotPresent
+        name: logd
         volumeMounts:
-        - name: log-directory
-          mountPath: /var/log/pods
+        - mountPath: /var/log/pods
+          name: log-directory
       tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        effect: NoSchedule
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
       volumes:
-      - name: log-directory
-        hostPath:
+      - hostPath:
           path: /var/log/pods
           type: Directory
+        name: log-directory
