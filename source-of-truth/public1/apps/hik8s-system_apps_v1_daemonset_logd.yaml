@@ -37,7 +37,7 @@ spec:
             secretKeyRef:
               key: auth0domain
               name: hik8s-credentials
-        image: ghcr.io/hik8s/logd:0.2.3
+        image: ghcr.io/hik8s/logd:0.2.12
         imagePullPolicy: IfNotPresent
         name: logd
         volumeMounts:

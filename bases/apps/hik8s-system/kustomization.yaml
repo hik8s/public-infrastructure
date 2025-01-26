@@ -12,13 +12,14 @@ helmCharts:
     repo: https://chart.atenia.ai/
     version: v0.1.4
     releaseName: hik8s
-    namespace: hik8s-system-stag
+    namespace: hik8s-system
     valuesInline:
       auth:
         createSecret: false
       dataIntake:
         endpoint: api.hik8s.ai
       logd:
-        imageVersion: 0.2.3
+        imageVersion: 0.2.12
       watchd:
-        imageVersion: 0.1.0
+        imageVersion: 0.2.12
+

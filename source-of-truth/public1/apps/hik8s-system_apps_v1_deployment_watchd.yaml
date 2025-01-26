@@ -38,7 +38,7 @@ spec:
             secretKeyRef:
               key: auth0domain
               name: hik8s-credentials
-        image: ghcr.io/hik8s/watchd:0.1.0
+        image: ghcr.io/hik8s/watchd:0.2.12
         imagePullPolicy: IfNotPresent
         name: watchd
       serviceAccountName: api-viewer
