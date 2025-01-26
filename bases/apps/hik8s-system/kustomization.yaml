@@ -4,6 +4,22 @@ kind: Kustomization
 namespace: hik8s-system
 
 resources:
-  - logd/
-  - watchd/
   - namespace.yaml
+  - secret.yaml
+
+helmCharts:
+  - name: hik8s-system
+    repo: https://chart.atenia.ai/
+    version: v0.1.4
+    releaseName: hik8s
+    namespace: hik8s-system
+    valuesInline:
+      auth:
+        createSecret: false
+      dataIntake:
+        endpoint: api.hik8s.ai
+      logd:
+        imageVersion: 0.2.12
+      watchd:
+        imageVersion: 0.2.12
+

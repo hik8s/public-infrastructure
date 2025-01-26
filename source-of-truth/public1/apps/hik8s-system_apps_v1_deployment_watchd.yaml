@@ -15,10 +15,12 @@ spec:
     spec:
       containers:
       - env:
-        - name: RUST_LOG
-          value: warn
         - name: HIK8S_HOST
           value: api.hik8s.ai
+        - name: RUST_LOG
+          value: info
+        - name: HIK8S_PORT
+          value: "443"
         - name: AUTH0_AUDIENCE
           value: api.hik8s.ai
         - name: CLIENT_ID
@@ -36,6 +38,7 @@ spec:
             secretKeyRef:
               key: auth0domain
               name: hik8s-credentials
-        image: ghcr.io/hik8s/watchd:0.1.0
+        image: ghcr.io/hik8s/watchd:0.2.12
+        imagePullPolicy: IfNotPresent
         name: watchd
       serviceAccountName: api-viewer
