@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
   - ../../../bases/apps/bookinfo/
+  - ../../../bases/apps/examples/
   # - ../../../bases/apps/hik8s-system/
