@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test1
+  namespace: examples
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test1
+  template:
+    metadata:
+      labels:
+        app: test1
+    spec:
+      containers:
+      - image: ghcr.io/hik8s/killed-oom:0.1.1
+        name: test1
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 256Mi
+      imagePullSecrets:
+      - name: hik8s-bot-ghcr-read-token
